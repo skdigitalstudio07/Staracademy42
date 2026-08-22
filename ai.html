@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Star Academy | AI Teacher</title>
+
+<link rel="stylesheet" href="style.css">
+
+<style>
+.ai-page{
+    min-height:100vh;
+    padding:120px 6% 70px;
+    background:linear-gradient(135deg,#06152f,#0b4168);
+    color:white;
+}
+
+.ai-container{
+    max-width:1000px;
+    margin:auto;
+}
+
+.ai-title{
+    text-align:center;
+    margin-bottom:40px;
+}
+
+.ai-title small{
+    color:#ffc928;
+    font-weight:900;
+    letter-spacing:3px;
+}
+
+.ai-title h1{
+    font-family:'Anton',sans-serif;
+    font-size:clamp(50px,8vw,90px);
+    font-weight:400;
+    line-height:.95;
+    margin:15px 0;
+}
+
+.ai-title h1 span{
+    color:#ffc928;
+}
+
+.ai-title p{
+    color:#c7d0dc;
+}
+
+.subjects{
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    gap:10px;
+    margin-bottom:20px;
+}
+
+.subject{
+    padding:14px 8px;
+    border:1px solid #ffffff22;
+    background:#ffffff0d;
+    color:white;
+    border-radius:6px;
+    cursor:pointer;
+    font-weight:800;
+    font-size:12px;
+}
+
+.subject:hover,
+.subject.selected{
+    background:#ffc928;
+    color:#06152f;
+}
+
+.question-box{
+    background:white;
+    padding:20px;
+    border-radius:10px;
+    box-shadow:0 20px 60px #0006;
+}
+
+#question{
+    width:100%;
+    min-height:150px;
+    resize:vertical;
+    border:1px solid #dce2e9;
+    border-radius:7px;
+    padding:18px;
+    font-family:Inter,sans-serif;
+    font-size:16px;
+    outline:none;
+}
+
+.ask-btn{
+    width:100%;
+    margin-top:15px;
+    padding:17px;
+    border:0;
+    border-radius:5px;
+    background:#e52d26;
+    color:white;
+    font-weight:900;
+    cursor:pointer;
+    font-size:14px;
+}
+
+.ask-btn:hover{
+    transform:translateY(-2px);
+}
+
+.answer{
+    display:none;
+    margin-top:25px;
+    background:#fff;
+    color:#101522;
+    border-radius:10px;
+    padding:25px;
+}
+
+.answer h3{
+    color:#e52d26;
+    margin-bottom:15px;
+}
+
+#answerText{
+    line-height:1.8;
+    white-space:pre-wrap;
+}
+
+.loading{
+    display:none;
+    text-align:center;
+    color:#ffc928;
+    margin-top:20px;
+}
+
+@media(max-width:700px){
+    .subjects{
+        grid-template-columns:repeat(2,1fr);
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header class="navbar">
+
+<a href="index.html" class="logo">
+<span class="star">★</span>
+<span class="logo-text">
+STAR
+<small>ACADEMY</small>
+</span>
+</a>
+
+<button class="menu-btn" onclick="toggleMenu()">☰</button>
+
+<nav id="navMenu">
+<a href="index.html">HOME</a>
+<a class="active" href="ai.html">AI TEACHER</a>
+<a href="about.html">ABOUT</a>
+<a href="gallery.html">GALLERY</a>
+<a href="contact.html">CONTACT</a>
+</nav>
+
+</header>
+
+
+<section class="ai-page">
+
+<div class="ai-container">
+
+<div class="ai-title">
+
+<small>STAR ACADEMY • SMART LEARNING</small>
+
+<h1>
+ASK <span>ANYTHING.</span>
+</h1>
+
+<p>
+Reasoning, Geography, History, Maths, Science, Hindi,
+English & more — get step-by-step explanations.
+</p>
+
+</div>
+
+
+<div class="subjects">
+
+<button class="subject selected" onclick="selectSubject('All Subjects',this)">ALL</button>
+
+<button class="subject" onclick="selectSubject('Reasoning',this)">🧠 REASONING</button>
+
+<button class="subject" onclick="selectSubject('Geography',this)">🌍 GEOGRAPHY</button>
+
+<button class="subject" onclick="selectSubject('History',this)">🏛️ HISTORY</button>
+
+<button class="subject" onclick="selectSubject('Mathematics',this)">➗ MATHS</button>
+
+<button class="subject" onclick="selectSubject('Science',this)">🔬 SCIENCE</button>
+
+<button class="subject" onclick="selectSubject('Hindi',this)">📖 HINDI</button>
+
+<button class="subject
